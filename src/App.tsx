@@ -167,7 +167,7 @@ function App() {
           <div className="controls">
             {/* Power */}
             <div className="control-group">
-              <div className="label">Powers {power ? "ON" : "OFF"}</div>
+              <div className="label">Power {power ? "ON" : "OFF"}</div>
 
               <div
                 className="toggle"
@@ -211,7 +211,7 @@ function App() {
 
             {/* Bank */}
             <div className="control-group">
-              <div className="label">Bank Box{bank ? "One" : "Two"}</div>
+              <div className="label">Bank {bank ? "One" : "Two"}</div>
 
               <div
                 className="bank-toggle"
