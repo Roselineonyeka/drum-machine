@@ -1,7 +1,13 @@
 import React from "react";
 import "./App.css";
 
-const bankOne = [
+interface DrumPad {
+  key: string;
+  id: string;
+  src: string;
+}
+
+const bankOne: DrumPad[] = [
   {
     key: "Q",
     id: "Heater-1",
@@ -49,7 +55,7 @@ const bankOne = [
   },
 ];
 
-const bankTwo = [
+const bankTwo: DrumPad[] = [
   {
     key: "Q",
     id: "Chord-1",
@@ -102,18 +108,20 @@ function App() {
   const [power, setPower] = React.useState(true);
   const [volume, setVolume] = React.useState(0.3);
   const [bank, setBank] = React.useState(true);
-  const [active, setActive] = React.useState(null);
+  const [active, setActive] = React.useState<string | null>(null);
 
   const currentBank = bank ? bankOne : bankTwo;
 
   const playDrum = React.useCallback(
-    (drum) => {
+    (drum: DrumPad) => {
       if (!power) {
         setDisplay("");
         return;
       }
 
-      const audio = document.getElementById(drum.key);
+      const audio = document.getElementById(
+        drum.key,
+      ) as HTMLAudioElement | null;
 
       if (audio) {
         audio.volume = volume;
@@ -130,7 +138,7 @@ function App() {
   );
 
   React.useEffect(() => {
-    const handleKey = (e) => {
+    const handleKey = (e: KeyboardEvent) => {
       const key = e.key.toUpperCase();
       const drum = currentBank.find((d) => d.key === key);
 
